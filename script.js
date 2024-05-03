@@ -7,6 +7,8 @@ const ROWS_COUNT = 10;
 const COLS_COUNT = 10;
 const numberOfBombs = 6;
 
+let counterOfDiscoveredCells = 0;
+
 var defeat = false;
 var victory = false;
 
@@ -72,20 +74,29 @@ render();
 // Game functions definitions
 //
 
+function markAsDiscovered(row, col) {
+  if(cells[row][col].discovered == false) {
+    cells[row][col].discovered = true;
+    counterOfDiscoveredCells++;
+  }
+
+}
+
 function discoverCell(row, col) {
   //
   // TODO: Task 5 - Reveal cells when clicked.
   //
 
 //Right now, I have 6 bombs for example in the playfield. When I click on a cell, I want to reveal it. 
-    cells[row][col].discovered = true;
+    markAsDiscovered(row, col);
 
   // TODO: Task 6 - Discover neighbor cells recursively, as long as there are no adjacent bombs to the current cell.
   for(i = -1; i <= 1; i++) {
     for(j = -1; j <= 1; j++) {
       if(row + i >= 0 && row + i < ROWS_COUNT && col + j >= 0 && col + j < COLS_COUNT) {
         if(!(cells[row + i][col + j].isBomb)) {
-          cells[row + i][col + j].discovered = true;
+          markAsDiscovered(row +i, col+j);
+
         } 
       }
       
@@ -168,6 +179,7 @@ function countAdjacentBombs(row, col) {
   return adjacentBombs;
 }
 
+
 function getBombsCount() {
   //
   // TODO: Task 9 - Implement stats: the counters currently always display 0, calculate and return the relevant values.
@@ -180,14 +192,18 @@ function getClearedCells() {
   //
   // TODO: Task 9 - Implement stats: the counters currently always display 0, calculate and return the relevant values.
   //
-  return 0;
+
+
+
+  return counterOfDiscoveredCells; // counter;
 }
 
 function getTotalCellsToClear() {
   //
   // TODO: Task 9 - Implement stats: the counters currently always display 0, calculate and return the relevant values.
   //
-  return 0;
+
+  return ROWS_COUNT * COLS_COUNT;
 }
 
 function checkForVictory() {
@@ -195,7 +211,10 @@ function checkForVictory() {
   // TODO: Task 10 - Implement victory. If the player has revealed as many cells as they must (every cell that isn't a
   //                 bomb), set variable victory to true.
   //
-  return 0;
+  if(counterOfDiscoveredCells == (ROWS_COUNT * COLS_COUNT - numberOfBombs)) {
+    victory = true;
+  }
+  return victory;
 }
 
 //
