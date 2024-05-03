@@ -47,7 +47,6 @@ definedBomb(); */
 // TODO: Task 2 - Comment out the code of task 1. Instead of adding bombs in fixed places, add 10 of them in random places.
 //                Add a BOMBS_COUNT constant so that you can easily change the amount of bombs placed. Put it next to the
 //                other constants.
-//
 
 function randomBombs(randomRow, randomCol) {
   for(i=0; i<numberOfBombs; i++) {
@@ -59,20 +58,15 @@ function randomBombs(randomRow, randomCol) {
 
 randomBombs()
 
-
 /* Task 3
 Now that the bombs are randomly placed, experiment with changing the COLS_COUNT, ROWS_COUNT and BOMBS_COUNT values. Try to find a combination that feels good. */
 
 // When COLS_COUNT, ROWS_COUNT and BOMBS_COUNT values are changed, the game is adapting to the new values. The game is still playable and the bombs are placed randomly.
 
-
 // Once the game has been initialized, we "render" it.
 render();
 
-
-//
 // Game functions definitions
-//
 
 function markAsDiscovered(row, col) {
   if(cells[row][col].discovered == false) {
@@ -83,9 +77,8 @@ function markAsDiscovered(row, col) {
 }
 
 function discoverCell(row, col) {
-  //
+
   // TODO: Task 5 - Reveal cells when clicked.
-  //
 
 //Right now, I have 6 bombs for example in the playfield. When I click on a cell, I want to reveal it. 
     markAsDiscovered(row, col);
@@ -96,14 +89,11 @@ function discoverCell(row, col) {
       if(row + i >= 0 && row + i < ROWS_COUNT && col + j >= 0 && col + j < COLS_COUNT) {
         if(!(cells[row + i][col + j].isBomb)) {
           markAsDiscovered(row +i, col+j);
-
         } 
-      }
-      
+      }  
     }
   }
 
-  //
   // TODO: Task 8 - Implement defeat. If the player "discovers" a bomb (clicks on it without holding shift), set the variable defeat to true.
   //
   if(cells[row][col].isBomb) {
@@ -113,7 +103,7 @@ function discoverCell(row, col) {
 }
 
 function flagCell(row, col) {
-  //
+  
   // TODO: Task 7 - Implement flags. Flags allow the player to mark cells that they think contain a bomb.
   // When clicking a cell and holding shift, function flagCell() will be called for you.
   //
@@ -124,21 +114,11 @@ function flagCell(row, col) {
 
   cells[row][col].hasBeenFlagged = true;
   console.log(`flagCell ${row}, ${col}`);
-
-
-
-  
 }
-
-
-
 
 
 // This function is called once for each cell when rendering the game. The row and col of the current cell is
 // passed to the functionn
-
-
-
 
 function bombDetector(row, col) {
   if(row < 0 || row >= ROWS_COUNT || col < 0 || col >= COLS_COUNT) {
@@ -155,10 +135,10 @@ function bombDetector(row, col) {
 
 
 function countAdjacentBombs(row, col) {
-  //
+  
   // TODO: Task 4 - Adjacent bombs are bombs in cells touching our cell (also diagonally). Implement this function
-  //                so that it returns the count of adjacent cells with bombs in them. 
-  //
+  // so that it returns the count of adjacent cells with bombs in them. 
+
   /* On each cell, we want to show the number of adjacent bombs. Adjacent bombs are bombs in cells touching our cell (also diagonally).
 
   When the playfield is rendered, the function countAdjacentBombs() is called once for each cell and a number is displayed in the cell if the return value is greater than 1.
@@ -193,8 +173,6 @@ function getClearedCells() {
   // TODO: Task 9 - Implement stats: the counters currently always display 0, calculate and return the relevant values.
   //
 
-
-
   return counterOfDiscoveredCells; // counter;
 }
 
@@ -222,7 +200,7 @@ function checkForVictory() {
 //
 function getMessage() {
   if (victory == true) {
-    return "Well done! 👏🏼<br><br>Refresh the page to start again.";
+    return "Good job! 👏🏼<br><br>Refresh the page to start again.";
   } else if (defeat) {
     return "Boom! 💥<br><br>Refresh the page to try again.";
   }
