@@ -5,7 +5,7 @@ const CHEAT_REVEAL_ALL = true;
 
 const ROWS_COUNT = 10;
 const COLS_COUNT = 10;
-const numberOfBombs = 10;
+const numberOfBombs = 6;
 
 var defeat = false;
 var victory = false;
@@ -48,7 +48,7 @@ definedBomb(); */
 //
 
 function randomBombs(randomRow, randomCol) {
-  for(i=0; i<=numberOfBombs; i++) {
+  for(i=0; i<numberOfBombs; i++) {
     randomRow = Math.floor(Math.random() * ROWS_COUNT);
     randomCol = Math.floor(Math.random() * COLS_COUNT);
     cells[randomRow][randomCol].isBomb = true;
@@ -57,6 +57,12 @@ function randomBombs(randomRow, randomCol) {
 }
 
 randomBombs()
+
+
+/* Task 3
+Now that the bombs are randomly placed, experiment with changing the COLS_COUNT, ROWS_COUNT and BOMBS_COUNT values. Try to find a combination that feels good. */
+
+// When COLS_COUNT, ROWS_COUNT and BOMBS_COUNT values are changed, the game is adapting to the new values. The game is still playable and the bombs are placed randomly.
 
 
 // Once the game has been initialized, we "render" it.
