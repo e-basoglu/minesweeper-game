@@ -172,7 +172,8 @@ function getBombsCount() {
   //
   // TODO: Task 9 - Implement stats: the counters currently always display 0, calculate and return the relevant values.
   //
-  return 0;
+  
+  return numberOfBombs;
 }
 
 function getClearedCells() {
