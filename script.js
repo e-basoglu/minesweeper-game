@@ -5,7 +5,7 @@ const CHEAT_REVEAL_ALL = false;
 
 const ROWS_COUNT = 10;
 const COLS_COUNT = 10;
-const numberOfBombs = 6;
+let numberOfBombs = 6;
 
 let counterOfDiscoveredCells = 0;
 
@@ -42,11 +42,25 @@ for (var row = 0; row < ROWS_COUNT; row++) {
 // call definedBomb function
 definedBomb(); */
 
+// Function to set difficulty based on user selection
+function setDifficulty() {
+  var difficulty = document.getElementById("difficulty").value;
+  if (difficulty === "easy") {
+    numberOfBombs = 10;
+  } else if (difficulty === "medium") {
+    numberOfBombs = 15;
+  } else if (difficulty === "hard") {
+    numberOfBombs = 25;
+  } 
+  render(); // Re-render the game with new settings
+}
 
+// Call setDifficulty function
+setDifficulty();
 
 // TODO: Task 2 - Comment out the code of task 1. Instead of adding bombs in fixed places, add 10 of them in random places.
-//                Add a BOMBS_COUNT constant so that you can easily change the amount of bombs placed. Put it next to the
-//                other constants.
+// Add a BOMBS_COUNT constant so that you can easily change the amount of bombs placed. Put it next to the
+// other constants.
 
 function randomBombs(randomRow, randomCol) {
   for(i=0; i<numberOfBombs; i++) {

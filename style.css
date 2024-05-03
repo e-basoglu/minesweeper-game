@@ -28,9 +28,19 @@ header, #message {
     text-align: center;
 }
 
+#difficulty-selection {
+    margin-top: 20px;
+    text-align: center;
+}
+
 h1 {
     font-size: 2em;
     margin: 10px;
+}
+
+#bombs-count{
+    margin-right: 20px;
+
 }
 
 img {
