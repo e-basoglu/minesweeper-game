@@ -1,7 +1,7 @@
 
 // Set this constant to true to debug the placement of bombs without
 // having to click on all cells to reveal them.
-const CHEAT_REVEAL_ALL = true;
+const CHEAT_REVEAL_ALL = false;
 
 const ROWS_COUNT = 10;
 const COLS_COUNT = 10;
@@ -80,24 +80,18 @@ function discoverCell(row, col) {
 //Right now, I have 6 bombs for example in the playfield. When I click on a cell, I want to reveal it. 
     cells[row][col].discovered = true;
 
-
-
   // TODO: Task 6 - Discover neighbor cells recursively, as long as there are no adjacent bombs to the current cell.
-  //
-  /* if(!cells[row][col].isBomb) {
-    //make the adjacent border check
-    if(row > 0 && !cells[row-1][col].discovered) {
-      discoverCell(row-1, col);
-    } else if(row < ROWS_COUNT - 1 && !cells[row+1][col].discovered) {
-      discoverCell(row+1, col);
-    } else if(col > 0 && !cells[row][col-1].discovered) {
-      discoverCell(row, col-1);
-    } else if(col < COLS_COUNT - 1 && !cells[row][col+1].discovered) {
-      discoverCell(row, col+1);
+  for(i = -1; i <= 1; i++) {
+    for(j = -1; j <= 1; j++) {
+      if(row + i >= 0 && row + i < ROWS_COUNT && col + j >= 0 && col + j < COLS_COUNT) {
+        if(!(cells[row + i][col + j].isBomb)) {
+          cells[row + i][col + j].discovered = true;
+        } 
+      }
+      
     }
-
   }
- */
+
   //
   // TODO: Task 8 - Implement defeat. If the player "discovers" a bomb (clicks on it without holding shift), set the variable defeat to true.
   //
@@ -119,12 +113,11 @@ function bombDetector(row, col) {
   if(row < 0 || row >= ROWS_COUNT || col < 0 || col >= COLS_COUNT) {
     return 0;
   } else{
-
-  if(cells[row][col].isBomb) {
-    return 1;
-  } else {
-    return 0;
-  }
+    if(cells[row][col].isBomb) {
+      return 1;
+    } else {
+      return 0;
+    }
   }
 
 }
