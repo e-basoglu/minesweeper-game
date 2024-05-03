@@ -1,7 +1,7 @@
 
 // Set this constant to true to debug the placement of bombs without
 // having to click on all cells to reveal them.
-const CHEAT_REVEAL_ALL = true;
+const CHEAT_REVEAL_ALL = false;
 
 const ROWS_COUNT = 10;
 const COLS_COUNT = 10;
@@ -53,7 +53,6 @@ function randomBombs(randomRow, randomCol) {
     randomCol = Math.floor(Math.random() * COLS_COUNT);
     cells[randomRow][randomCol].isBomb = true;
   }
- 
 }
 
 randomBombs()
@@ -78,6 +77,15 @@ function discoverCell(row, col) {
   // TODO: Task 5 - Reveal cells when clicked.
   //
 
+//Right now, I have 6 bombs for example in the playfield. When I click on a cell, I want to reveal it. If the cell contains a bomb, I want to set the defeat variable to true. If the cell doesn't contain a bomb, I want to reveal it and all adjacent cells that don't contain a bomb either. If an adjacent cell contains a bomb, I want to reveal the number of adjacent bombs in the cell.
+
+  if (cells[row][col].isBomb === true) {
+    defeat = true;
+  } else {
+    cells[row][col].discovered = true;
+  }
+
+
   //
   // TODO: Task 6 - Discover neighbor cells recursively, as long as there are no adjacent bombs to the current cell.
   //
@@ -96,11 +104,22 @@ function flagCell(row, col) {
 
 // This function is called once for each cell when rendering the game. The row and col of the current cell is
 // passed to the functionn
-function countAdjacentBombs(row, col) {
+function countAdjacentBombs(ROWS_COUNT, COLS_COUNT) {
   //
   // TODO: Task 4 - Adjacent bombs are bombs in cells touching our cell (also diagonally). Implement this function
   //                so that it returns the count of adjacent cells with bombs in them. 
   //
+  /* On each cell, we want to show the number of adjacent bombs. Adjacent bombs are bombs in cells touching our cell (also diagonally).
+
+  When the playfield is rendered, the function countAdjacentBombs() is called once for each cell and a number is displayed in the cell if the return value is greater than 1.
+
+  Implement this function so that it returns the correct number. */
+
+  //for a cell in the middle of the playfield, define 8 adjacent cell
+
+
+
+
   return 1;
 }
 
