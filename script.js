@@ -95,17 +95,37 @@ function discoverCell(row, col) {
   //
   // TODO: Task 8 - Implement defeat. If the player "discovers" a bomb (clicks on it without holding shift), set the variable defeat to true.
   //
+  if(cells[row][col].isBomb) {
+    defeat = true;
+  
+  }
 }
 
 function flagCell(row, col) {
   //
   // TODO: Task 7 - Implement flags. Flags allow the player to mark cells that they think contain a bomb.
-  //                When clicking a cell and holding shift, function flagCell() will be called for you.
+  // When clicking a cell and holding shift, function flagCell() will be called for you.
   //
+ /*  Improvement ideas:
+- when clicking on an already flagged cell, remove the flag instead.
+- prevent discovering a flagged cell.
+- add a small paragraph above or below the grid to explain to the user that they can place flags by holding shift. */
+
+  cells[row][col].hasBeenFlagged = true;
+  console.log(`flagCell ${row}, ${col}`);
+
+
+
+  
 }
+
+
+
+
 
 // This function is called once for each cell when rendering the game. The row and col of the current cell is
 // passed to the functionn
+
 
 
 
@@ -191,7 +211,6 @@ function getMessage() {
 
 // "Render" the game. Update the content of the page to reflect any changes to the game state.
 function render() {
-  console.log("render");
   var playfield = document.getElementById("playfield");
   var html = "";
   for (var row = 0; row < ROWS_COUNT; row++) {
